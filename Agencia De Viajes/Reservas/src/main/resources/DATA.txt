@@ -1,0 +1,36 @@
+    {
+        "nombreCliente": "Alex",
+        "dni": "13427346A",
+        "idHotel": 14,
+        "idVuelo": 2,
+        "numPersonaQueFormanReserva": 49
+    }
+    
+    
+    {
+    "nombreCliente": "sdfa",
+    "dni": "918416284N",
+    "idHotel": 14,
+    "idVuelo": 3,
+    "numPersonaQueFormanReserva": 31
+}
+    
+    
+    {
+	    "idVuelo": 3,
+	    "empresa": "VUELING",
+	    "fechaVuelo": "2023-03-25",
+	    "precio": 250.0,
+	    "plazasDisponibles": 200
+    }
+    
+    	
+	@Autowired
+	RestTemplate template; 
+	private String urlRegistroReserva1="http://localhost:8000/actualizarDatosVueloDepuesDeReserva/";
+
+	@Override
+	public void registroReserva(Reserva reserva){
+		repository.save(reserva);
+		template.put(urlRegistroReserva1+reserva.getIdVuelo()+"/"+reserva.getNumPersonaQueFormanReserva(), null);	 
+	}
